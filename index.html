@@ -3,13 +3,40 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta
+      name="description"
+      content="Portfolio d'Alexandre Edmond, developpeur oriente IA, reinforcement learning, robotique et outils web."
+    >
+    <meta property="og:title" content="Alexandre Edmond - Portfolio">
+    <meta
+      property="og:description"
+      content="Projets en IA, reinforcement learning, robotique, interfaces web et outils systeme."
+    >
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://alexandreedmond.github.io/">
     <title>Alexandre Edmond - Portfolio</title>
     <style>
       :root {
         color-scheme: light;
-        font-family: Arial, Helvetica, sans-serif;
-        color: #1f2933;
-        background: #f6f8fb;
+        --ink: #151515;
+        --muted: #5f646d;
+        --paper: #f7f3ec;
+        --panel: #fffaf2;
+        --line: #d8d0c2;
+        --accent: #0f766e;
+        --accent-dark: #0b4f4a;
+        --soft: #e7efe9;
+        font-family: Georgia, "Times New Roman", serif;
+        color: var(--ink);
+        background: var(--paper);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       body {
@@ -17,118 +44,565 @@
         line-height: 1.6;
       }
 
-      main {
-        width: min(920px, calc(100% - 40px));
-        margin: 0 auto;
-        padding: 64px 0;
-      }
-
-      header {
-        margin-bottom: 48px;
-      }
-
-      h1 {
-        margin: 0 0 12px;
-        font-size: clamp(2.2rem, 6vw, 4rem);
-        line-height: 1.05;
-      }
-
-      h2 {
-        margin-top: 40px;
-        font-size: 1.4rem;
-      }
-
-      p {
-        max-width: 680px;
-        margin: 0 0 16px;
+      body::before {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        content: "";
+        background:
+          linear-gradient(120deg, rgba(15, 118, 110, 0.08), transparent 34%),
+          radial-gradient(circle at 90% 10%, rgba(15, 118, 110, 0.12), transparent 28%);
       }
 
       a {
-        color: #005fcc;
+        color: var(--accent-dark);
+        text-decoration-thickness: 1px;
+        text-underline-offset: 4px;
       }
 
-      .intro {
-        font-size: 1.2rem;
-        color: #52606d;
+      .page {
+        width: min(1120px, calc(100% - 36px));
+        margin: 0 auto;
+      }
+
+      .site-nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 24px 0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.92rem;
+      }
+
+      .brand {
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        text-decoration: none;
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
+        gap: 36px;
+        align-items: end;
+        min-height: 72vh;
+        padding: 64px 0 72px;
+        border-top: 1px solid var(--line);
+      }
+
+      .eyebrow {
+        margin: 0 0 18px;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: var(--accent-dark);
+        text-transform: uppercase;
+      }
+
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+        line-height: 1.05;
+      }
+
+      h1 {
+        max-width: 850px;
+        font-size: clamp(3.2rem, 10vw, 7.8rem);
+        letter-spacing: -0.04em;
+      }
+
+      h2 {
+        font-size: clamp(2rem, 5vw, 3.8rem);
+        letter-spacing: -0.03em;
+      }
+
+      h3 {
+        font-size: 1.28rem;
+      }
+
+      p {
+        margin: 0;
+      }
+
+      .hero-copy {
+        max-width: 680px;
+        margin-top: 28px;
+        color: var(--muted);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 30px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        min-height: 44px;
+        padding: 10px 18px;
+        border: 1px solid var(--ink);
+        border-radius: 999px;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-weight: 700;
+        color: var(--ink);
+        text-decoration: none;
+        transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      .button.primary {
+        border-color: var(--accent);
+        color: #ffffff;
+        background: var(--accent);
+      }
+
+      .hero-card {
+        padding: 24px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 250, 242, 0.8);
+      }
+
+      .hero-card dl {
+        display: grid;
+        gap: 18px;
+        margin: 0;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      .hero-card dt {
+        margin-bottom: 4px;
+        color: var(--muted);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .hero-card dd {
+        margin: 0;
+        font-weight: 700;
+      }
+
+      .section {
+        padding: 76px 0;
+        border-top: 1px solid var(--line);
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(180px, 0.4fr) minmax(0, 0.6fr);
+        gap: 28px;
+        align-items: start;
+        margin-bottom: 34px;
+      }
+
+      .section-head p {
+        color: var(--muted);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 1.05rem;
       }
 
       .projects {
         display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 16px;
         padding: 0;
+        margin: 0;
         list-style: none;
       }
 
       .project {
-        padding: 18px;
-        border: 1px solid #d9e2ec;
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        min-height: 320px;
+        padding: 22px;
+        border: 1px solid var(--line);
         border-radius: 8px;
-        background: #ffffff;
-      }
-
-      .project h3 {
-        margin: 0 0 6px;
+        background: var(--panel);
       }
 
       .project p {
+        color: var(--muted);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 0;
+        margin: auto 0 0;
+        list-style: none;
+      }
+
+      .tags li {
+        padding: 5px 9px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        color: var(--accent-dark);
+        background: var(--soft);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.78rem;
+        font-weight: 700;
+      }
+
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 12px;
+        padding: 0;
         margin: 0;
+        list-style: none;
+      }
+
+      .skills li,
+      .timeline-item,
+      .contact-panel {
+        padding: 18px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: rgba(255, 250, 242, 0.76);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      .timeline {
+        display: grid;
+        gap: 12px;
+      }
+
+      .timeline-item {
+        display: grid;
+        grid-template-columns: 170px 1fr;
+        gap: 18px;
+      }
+
+      .timeline-item strong {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .timeline-item span {
+        color: var(--muted);
+      }
+
+      .contact-panel {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 24px;
+      }
+
+      .contact-panel p {
+        max-width: 620px;
+        color: var(--muted);
       }
 
       footer {
-        margin-top: 56px;
-        color: #627d98;
-        font-size: 0.95rem;
+        padding: 30px 0 46px;
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.92rem;
+      }
+
+      @media (max-width: 860px) {
+        .site-nav,
+        .hero,
+        .section-head,
+        .timeline-item {
+          grid-template-columns: 1fr;
+        }
+
+        .site-nav {
+          align-items: flex-start;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 42px 0 58px;
+        }
+
+        .projects,
+        .skills {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .page {
+          width: min(100% - 28px, 1120px);
+        }
+
+        .site-nav {
+          display: grid;
+        }
+
+        .nav-links {
+          gap: 10px;
+        }
+
+        .button {
+          width: 100%;
+          justify-content: center;
+        }
       }
     </style>
   </head>
   <body>
-    <main>
-      <header>
-        <h1>Alexandre Edmond</h1>
-        <p class="intro">
-          Portfolio de projets en intelligence artificielle, reinforcement learning,
-          interfaces web et outils systeme.
-        </p>
+    <div class="page">
+      <nav class="site-nav" aria-label="Navigation principale">
+        <a class="brand" href="#">Alexandre Edmond</a>
+        <div class="nav-links">
+          <a href="#projets">Projets</a>
+          <a href="#competences">Competences</a>
+          <a href="#parcours">Parcours</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+
+      <header class="hero">
+        <div>
+          <p class="eyebrow">IA / Reinforcement learning / Robotique</p>
+          <h1>Je construis des prototypes IA utiles, testables et concrets.</h1>
+          <p class="hero-copy">
+            Developpeur oriente intelligence artificielle, reinforcement learning,
+            vision par ordinateur, systemes d'IA temps reel et interfaces web.
+            Je m'interesse aux projets qui relient modeles, donnees et usages reels.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#projets">Voir mes projets</a>
+            <a class="button" href="assets/cv-alexandre-edmond-2026-06-22.pdf">Telecharger le CV</a>
+            <a class="button" href="mailto:alexandre.edm.pro@gmail.com">Me contacter</a>
+          </div>
+        </div>
+
+        <aside class="hero-card" aria-label="Resume rapide">
+          <dl>
+            <div>
+              <dt>Profil</dt>
+              <dd>Data Scientist / AI Engineer</dd>
+            </div>
+            <div>
+              <dt>Formation</dt>
+              <dd>Telecom Physique Strasbourg / Master informatique</dd>
+            </div>
+            <div>
+              <dt>Localisation</dt>
+              <dd>Strasbourg, France</dd>
+            </div>
+            <div>
+              <dt>CV</dt>
+              <dd>Version du 22 juin 2026</dd>
+            </div>
+          </dl>
+        </aside>
       </header>
 
-      <section aria-labelledby="about-title">
-        <h2 id="about-title">A propos</h2>
-        <p>
-          Je construis des prototypes techniques autour de l'IA, du controle,
-          de la simulation et des interfaces utiles. Ce site regroupera mes
-          projets, experiences et liens importants.
-        </p>
-      </section>
+      <main>
+        <section class="section" id="projets" aria-labelledby="projects-title">
+          <div class="section-head">
+            <h2 id="projects-title">Projets selectionnes</h2>
+            <p>
+              Une selection courte de projets pour montrer mes centres d'interet :
+              apprentissage par renforcement, simulation, interfaces web, systemes
+              locaux et experimentation IA.
+            </p>
+          </div>
 
-      <section aria-labelledby="projects-title">
-        <h2 id="projects-title">Projets</h2>
-        <ul class="projects">
-          <li class="project">
-            <h3><a href="https://github.com/AlexandreEDMOND/numpy-rl-racer">numpy-rl-racer</a></h3>
-            <p>Prototype de course et reinforcement learning avec Python et NumPy.</p>
-          </li>
-          <li class="project">
-            <h3><a href="https://github.com/AlexandreEDMOND/Circle-Seeker-RL">Circle-Seeker-RL</a></h3>
-            <p>Environnement RL avec visualisation pygame, controle manuel et baseline aleatoire.</p>
-          </li>
-          <li class="project">
-            <h3><a href="https://github.com/AlexandreEDMOND/syswatch">syswatch</a></h3>
-            <p>Moniteur systeme local pour suivre disque, RAM, Wi-Fi, puissance et autres metriques.</p>
-          </li>
-        </ul>
-      </section>
+          <ul class="projects">
+            <li class="project">
+              <h3><a href="https://github.com/AlexandreEDMOND/numpy-rl-racer">numpy-rl-racer</a></h3>
+              <p>
+                Prototype de course en reinforcement learning construit autour de
+                Python et NumPy pour explorer des agents simples et controlables.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li>
+                <li>NumPy</li>
+                <li>RL</li>
+              </ul>
+            </li>
 
-      <section aria-labelledby="contact-title">
-        <h2 id="contact-title">Contact</h2>
-        <p>
-          Retrouvez mon code sur
-          <a href="https://github.com/AlexandreEDMOND">GitHub</a>.
-        </p>
-      </section>
+            <li class="project">
+              <h3><a href="https://github.com/AlexandreEDMOND/Circle-Seeker-RL">Circle-Seeker-RL</a></h3>
+              <p>
+                Environnement RL avec visualisation pygame, controle manuel,
+                baseline aleatoire, tests et integration continue.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li>
+                <li>pygame</li>
+                <li>Gymnasium</li>
+              </ul>
+            </li>
+
+            <li class="project">
+              <h3><a href="https://github.com/AlexandreEDMOND/syswatch">syswatch</a></h3>
+              <p>
+                Moniteur systeme local pour suivre disque, RAM, Wi-Fi, puissance
+                et autres metriques utiles depuis une interface web.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>JavaScript</li>
+                <li>Systeme</li>
+                <li>Dashboard</li>
+              </ul>
+            </li>
+
+            <li class="project">
+              <h3><a href="https://github.com/AlexandreEDMOND/TonySpark">TonySpark</a></h3>
+              <p>
+                Interface React de controle gestuel par webcam avec MediaPipe,
+                orientee interaction humain-machine.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>React</li>
+                <li>MediaPipe</li>
+                <li>Webcam</li>
+              </ul>
+            </li>
+
+            <li class="project">
+              <h3><a href="https://github.com/AlexandreEDMOND/TTS-GAN">TTS-GAN</a></h3>
+              <p>
+                Implementation d'un GAN base sur Transformer pour la generation
+                de series temporelles dans un contexte collaboratif.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Jupyter</li>
+                <li>GAN</li>
+                <li>Time series</li>
+              </ul>
+            </li>
+
+            <li class="project">
+              <h3><a href="https://github.com/AlexandreEDMOND/zero_to_skyjo">zero_to_skyjo</a></h3>
+              <p>
+                Agent IA qui apprend a jouer a Skyjo depuis zero, utile pour
+                experimenter des strategies et boucles d'apprentissage.
+              </p>
+              <ul class="tags" aria-label="Technologies">
+                <li>Python</li>
+                <li>Agent IA</li>
+                <li>Jeu</li>
+              </ul>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section" id="competences" aria-labelledby="skills-title">
+          <div class="section-head">
+            <h2 id="skills-title">Competences</h2>
+            <p>
+              Des competences reliees a des projets et experiences : construire,
+              tester, deployer et iterer sur des prototypes IA.
+            </p>
+          </div>
+
+          <ul class="skills">
+            <li>Python, C++, C, Bash, SQL</li>
+            <li>PyTorch, Transformers, OpenCV, YOLO, scikit-learn, NumPy</li>
+            <li>Docker, Kubernetes, GitHub Actions, MLflow, FastAPI, AWS</li>
+            <li>vLLM, LoRA, Hugging Face, RAG, Whisper</li>
+          </ul>
+        </section>
+
+        <section class="section" id="parcours" aria-labelledby="journey-title">
+          <div class="section-head">
+            <h2 id="journey-title">Parcours</h2>
+            <p>
+              Un apercu volontairement court. Le CV donne le detail complet des
+              experiences, dates et missions.
+            </p>
+          </div>
+
+          <div class="timeline">
+            <article class="timeline-item">
+              <span>2024</span>
+              <div>
+                <strong>Stagiaire chercheur en Deep Reinforcement Learning / HYDRO</strong>
+                <p>
+                  PoC en solo pour optimiser une methode de decoupe via deep
+                  learning et reinforcement learning.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <span>2023 - 2024</span>
+              <div>
+                <strong>Data Scientist / AI Engineer / Kyndryl</strong>
+                <p>
+                  APIs d'indexation, classification et extraction de documents
+                  avec des modeles IA et des pipelines deployes.
+                </p>
+              </div>
+            </article>
+
+            <article class="timeline-item">
+              <span>2022 - 2025</span>
+              <div>
+                <strong>Telecom Physique Strasbourg / Universite de Strasbourg</strong>
+                <p>
+                  Grande ecole d'ingenieur et double diplome master en
+                  informatique, data science et intelligence artificielle.
+                </p>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="contact" aria-labelledby="contact-title">
+          <div class="section-head">
+            <h2 id="contact-title">Contact</h2>
+            <p>
+              Pour discuter d'un projet IA, d'une opportunite ou simplement voir
+              le code, les liens essentiels sont ici.
+            </p>
+          </div>
+
+          <div class="contact-panel">
+            <p>
+              Le CV le plus recent ajoute au site date du 22 juin 2026. Il est
+              disponible en PDF directement depuis cette page.
+            </p>
+            <div class="actions">
+              <a class="button primary" href="mailto:alexandre.edm.pro@gmail.com">Email</a>
+              <a class="button" href="https://github.com/AlexandreEDMOND">GitHub</a>
+              <a class="button" href="assets/cv-alexandre-edmond-2026-06-22.pdf">CV PDF</a>
+            </div>
+          </div>
+        </section>
+      </main>
 
       <footer>
-        <p>&copy; 2026 Alexandre Edmond</p>
+        <p>&copy; 2026 Alexandre Edmond. Portfolio publie avec GitHub Pages.</p>
       </footer>
-    </main>
+    </div>
   </body>
 </html>
