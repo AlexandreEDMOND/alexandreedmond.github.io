@@ -5,30 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta
       name="description"
-      content="Portfolio d'Alexandre Edmond, developpeur oriente IA, reinforcement learning, robotique et outils web."
+      content="Portfolio d'Alexandre Edmond, AI Engineer et Data Scientist specialise en IA, reinforcement learning, robotique et outils web."
     >
-    <meta property="og:title" content="Alexandre Edmond - Portfolio">
+    <meta property="og:title" content="Alexandre Edmond - AI Engineer">
     <meta
       property="og:description"
-      content="Projets en IA, reinforcement learning, robotique, interfaces web et outils systeme."
+      content="Projets en reinforcement learning, vision par ordinateur, systemes IA et outils web."
     >
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alexandreedmond.github.io/">
-    <title>Alexandre Edmond - Portfolio</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='10' fill='%23060807'/%3E%3Ctext x='50%25' y='54%25' text-anchor='middle' font-family='monospace' font-size='24' font-weight='700' fill='%2361ff9f'%3EAE%3C/text%3E%3C/svg%3E"
+    >
+    <title>Alexandre Edmond - AI Engineer</title>
     <style>
       :root {
-        color-scheme: light;
-        --ink: #151515;
-        --muted: #5f646d;
-        --paper: #f7f3ec;
-        --panel: #fffaf2;
-        --line: #d8d0c2;
-        --accent: #0f766e;
-        --accent-dark: #0b4f4a;
-        --soft: #e7efe9;
-        font-family: Georgia, "Times New Roman", serif;
+        color-scheme: dark;
+        --bg: #060807;
+        --bg-2: #0a100d;
+        --panel: #0e1712;
+        --panel-2: #121f18;
+        --ink: #ecfff7;
+        --muted: #8da99c;
+        --muted-2: #5d7569;
+        --line: #22362c;
+        --line-strong: #3d604d;
+        --green: #61ff9f;
+        --green-2: #12d878;
+        --cyan: #5be7ff;
+        --amber: #ffd166;
+        --danger: #ff6b6b;
+        --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+        --mono: "IBM Plex Mono", "JetBrains Mono", "Fira Code", Consolas, monospace;
+        --display: "Avenir Next Condensed", "Bahnschrift", "DIN Condensed", var(--mono);
+        font-family: var(--mono);
         color: var(--ink);
-        background: var(--paper);
+        background: var(--bg);
       }
 
       * {
@@ -40,98 +53,181 @@
       }
 
       body {
+        min-width: 320px;
         margin: 0;
-        line-height: 1.6;
+        line-height: 1.55;
+        background:
+          radial-gradient(circle at 18% 16%, rgba(18, 216, 120, 0.16), transparent 28%),
+          radial-gradient(circle at 86% 8%, rgba(91, 231, 255, 0.12), transparent 26%),
+          linear-gradient(180deg, #08100c 0%, var(--bg) 46%, #030504 100%);
       }
 
       body::before {
         position: fixed;
         inset: 0;
-        z-index: -1;
+        z-index: -2;
+        pointer-events: none;
         content: "";
-        background:
-          linear-gradient(120deg, rgba(15, 118, 110, 0.08), transparent 34%),
-          radial-gradient(circle at 90% 10%, rgba(15, 118, 110, 0.12), transparent 28%);
+        background-image:
+          linear-gradient(rgba(97, 255, 159, 0.045) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(97, 255, 159, 0.045) 1px, transparent 1px);
+        background-size: 42px 42px;
+        mask-image: linear-gradient(to bottom, black 0%, transparent 78%);
+      }
+
+      body::after {
+        position: fixed;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        content: "";
+        opacity: 0.18;
+        background: repeating-linear-gradient(
+          to bottom,
+          transparent 0,
+          transparent 2px,
+          rgba(236, 255, 247, 0.08) 3px
+        );
       }
 
       a {
-        color: var(--accent-dark);
-        text-decoration-thickness: 1px;
-        text-underline-offset: 4px;
+        color: inherit;
       }
 
-      .page {
-        width: min(1120px, calc(100% - 36px));
+      .shell {
+        width: min(1180px, calc(100% - 36px));
         margin: 0 auto;
       }
 
-      .site-nav {
+      .topbar {
+        position: sticky;
+        top: 0;
+        z-index: 20;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 20px;
-        padding: 24px 0;
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        font-size: 0.92rem;
+        gap: 18px;
+        padding: 18px 0;
+        border-bottom: 1px solid rgba(97, 255, 159, 0.16);
+        backdrop-filter: blur(18px);
       }
 
       .brand {
-        font-weight: 700;
-        letter-spacing: 0.04em;
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        color: var(--ink);
+        font-weight: 800;
+        letter-spacing: 0.08em;
+        text-decoration: none;
         text-transform: uppercase;
+      }
+
+      .brand::before {
+        width: 11px;
+        height: 11px;
+        border-radius: 50%;
+        content: "";
+        background: var(--green);
+        box-shadow: 0 0 26px rgba(97, 255, 159, 0.9);
       }
 
       .nav-links {
         display: flex;
         flex-wrap: wrap;
-        gap: 14px;
+        justify-content: flex-end;
+        gap: 8px;
       }
 
       .nav-links a {
+        padding: 8px 10px;
+        border: 1px solid transparent;
+        border-radius: 6px;
         color: var(--muted);
+        font-size: 0.82rem;
         text-decoration: none;
+        transition: border-color 160ms ease, color 160ms ease, background 160ms ease;
+      }
+
+      .nav-links a:hover {
+        border-color: var(--line);
+        color: var(--green);
+        background: rgba(97, 255, 159, 0.06);
       }
 
       .hero {
         display: grid;
-        grid-template-columns: minmax(0, 1.35fr) minmax(280px, 0.65fr);
-        gap: 36px;
-        align-items: end;
-        min-height: 72vh;
-        padding: 64px 0 72px;
-        border-top: 1px solid var(--line);
+        grid-template-columns: minmax(0, 1.05fr) minmax(330px, 0.95fr);
+        gap: 28px;
+        align-items: stretch;
+        min-height: calc(100vh - 76px);
+        padding: 58px 0 74px;
       }
 
-      .eyebrow {
-        margin: 0 0 18px;
-        font-family: "Helvetica Neue", Arial, sans-serif;
+      .hero-main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        min-width: 0;
+      }
+
+      .kicker,
+      .section-label,
+      .terminal-label,
+      .card-label {
+        color: var(--green);
         font-size: 0.78rem;
-        font-weight: 700;
-        letter-spacing: 0.18em;
-        color: var(--accent-dark);
+        font-weight: 800;
+        letter-spacing: 0.16em;
         text-transform: uppercase;
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        width: fit-content;
+        margin: 0 0 24px;
+        padding: 8px 10px;
+        border: 1px solid rgba(97, 255, 159, 0.28);
+        border-radius: 999px;
+        color: var(--green);
+        background: rgba(97, 255, 159, 0.08);
       }
 
       h1,
       h2,
       h3 {
         margin: 0;
-        line-height: 1.05;
+        line-height: 0.96;
       }
 
       h1 {
-        max-width: 850px;
-        font-size: clamp(3.2rem, 10vw, 7.8rem);
-        letter-spacing: -0.04em;
+        max-width: 760px;
+        font-family: var(--display);
+        font-size: clamp(4rem, 12vw, 9.6rem);
+        font-weight: 900;
+        letter-spacing: -0.07em;
+        text-transform: uppercase;
+      }
+
+      h1 span {
+        display: block;
+        color: transparent;
+        -webkit-text-stroke: 1px rgba(236, 255, 247, 0.74);
+        text-shadow: none;
       }
 
       h2 {
-        font-size: clamp(2rem, 5vw, 3.8rem);
-        letter-spacing: -0.03em;
+        font-family: var(--display);
+        font-size: clamp(2.4rem, 6vw, 5.5rem);
+        font-weight: 900;
+        letter-spacing: -0.055em;
+        text-transform: uppercase;
       }
 
       h3 {
-        font-size: 1.28rem;
+        font-size: 1.05rem;
       }
 
       p {
@@ -139,153 +235,290 @@
       }
 
       .hero-copy {
-        max-width: 680px;
-        margin-top: 28px;
+        max-width: 720px;
+        margin: 28px 0 0;
         color: var(--muted);
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        font-size: clamp(1.1rem, 2.2vw, 1.35rem);
+        font-size: clamp(1rem, 1.8vw, 1.18rem);
+      }
+
+      .hero-copy strong {
+        color: var(--ink);
+        font-weight: 800;
       }
 
       .actions {
         display: flex;
         flex-wrap: wrap;
         gap: 12px;
-        margin-top: 30px;
+        margin-top: 34px;
       }
 
       .button {
         display: inline-flex;
         align-items: center;
-        min-height: 44px;
-        padding: 10px 18px;
-        border: 1px solid var(--ink);
-        border-radius: 999px;
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        font-weight: 700;
+        justify-content: center;
+        min-height: 46px;
+        padding: 12px 16px;
+        border: 1px solid var(--line-strong);
+        border-radius: 6px;
         color: var(--ink);
+        background: rgba(18, 31, 24, 0.72);
+        box-shadow: inset 0 0 0 1px rgba(236, 255, 247, 0.03);
+        font-weight: 800;
         text-decoration: none;
-        transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+        transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
       }
 
       .button:hover {
         transform: translateY(-2px);
+        border-color: var(--green);
+        box-shadow: 0 0 32px rgba(97, 255, 159, 0.16);
       }
 
       .button.primary {
-        border-color: var(--accent);
-        color: #ffffff;
-        background: var(--accent);
+        border-color: rgba(97, 255, 159, 0.9);
+        color: #041008;
+        background: linear-gradient(135deg, var(--green), var(--green-2));
       }
 
-      .hero-card {
-        padding: 24px;
-        border: 1px solid var(--line);
+      .terminal {
+        align-self: center;
+        overflow: hidden;
+        border: 1px solid rgba(97, 255, 159, 0.22);
         border-radius: 8px;
-        background: rgba(255, 250, 242, 0.8);
+        background: linear-gradient(180deg, rgba(14, 23, 18, 0.96), rgba(7, 12, 9, 0.96));
+        box-shadow: var(--shadow);
       }
 
-      .hero-card dl {
+      .terminal-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--line);
+        background: rgba(255, 255, 255, 0.03);
+      }
+
+      .dots {
+        display: flex;
+        gap: 7px;
+      }
+
+      .dots span {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .dots span:nth-child(1) {
+        background: var(--danger);
+      }
+
+      .dots span:nth-child(2) {
+        background: var(--amber);
+      }
+
+      .dots span:nth-child(3) {
+        background: var(--green);
+      }
+
+      .terminal-body {
         display: grid;
         gap: 18px;
-        margin: 0;
-        font-family: "Helvetica Neue", Arial, sans-serif;
+        padding: 22px;
       }
 
-      .hero-card dt {
-        margin-bottom: 4px;
+      .terminal-line {
         color: var(--muted);
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
+        font-size: 0.9rem;
       }
 
-      .hero-card dd {
-        margin: 0;
-        font-weight: 700;
+      .terminal-line strong {
+        color: var(--ink);
+      }
+
+      .prompt {
+        color: var(--green);
+      }
+
+      .signal-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
+      }
+
+      .signal {
+        min-height: 118px;
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        background:
+          linear-gradient(135deg, rgba(97, 255, 159, 0.08), transparent 52%),
+          rgba(255, 255, 255, 0.025);
+      }
+
+      .signal b {
+        display: block;
+        color: var(--green);
+        font-size: 1.8rem;
+        line-height: 1;
+      }
+
+      .signal span {
+        display: block;
+        margin-top: 8px;
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .stack-line {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .chip {
+        padding: 6px 8px;
+        border: 1px solid rgba(91, 231, 255, 0.24);
+        border-radius: 5px;
+        color: var(--cyan);
+        background: rgba(91, 231, 255, 0.055);
+        font-size: 0.75rem;
+        font-weight: 800;
       }
 
       .section {
-        padding: 76px 0;
-        border-top: 1px solid var(--line);
+        padding: 78px 0;
+        border-top: 1px solid rgba(97, 255, 159, 0.14);
       }
 
       .section-head {
         display: grid;
-        grid-template-columns: minmax(180px, 0.4fr) minmax(0, 0.6fr);
-        gap: 28px;
-        align-items: start;
-        margin-bottom: 34px;
+        grid-template-columns: minmax(220px, 0.42fr) minmax(0, 0.58fr);
+        gap: 30px;
+        align-items: end;
+        margin-bottom: 26px;
       }
 
       .section-head p {
+        max-width: 700px;
         color: var(--muted);
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        font-size: 1.05rem;
+      }
+
+      .section-label {
+        display: block;
+        margin-bottom: 10px;
       }
 
       .projects {
         display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 16px;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
         padding: 0;
         margin: 0;
         list-style: none;
       }
 
       .project {
+        position: relative;
         display: flex;
         flex-direction: column;
-        gap: 18px;
-        min-height: 320px;
-        padding: 22px;
+        grid-column: span 4;
+        min-height: 312px;
+        padding: 18px;
+        overflow: hidden;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: var(--panel);
+        background:
+          linear-gradient(145deg, rgba(97, 255, 159, 0.09), transparent 38%),
+          linear-gradient(180deg, var(--panel), rgba(8, 15, 11, 0.92));
+      }
+
+      .project.featured {
+        grid-column: span 6;
+      }
+
+      .project::before {
+        position: absolute;
+        top: 0;
+        right: 0;
+        left: 0;
+        height: 3px;
+        content: "";
+        background: linear-gradient(90deg, var(--green), transparent);
+      }
+
+      .project-index {
+        color: var(--muted-2);
+        font-size: 0.76rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+      }
+
+      .project h3 {
+        margin-top: 28px;
+        font-size: 1.24rem;
+      }
+
+      .project h3 a {
+        text-decoration: none;
       }
 
       .project p {
+        margin-top: 16px;
         color: var(--muted);
-        font-family: "Helvetica Neue", Arial, sans-serif;
+        font-size: 0.92rem;
       }
 
       .tags {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
+        gap: 7px;
         padding: 0;
         margin: auto 0 0;
         list-style: none;
       }
 
       .tags li {
-        padding: 5px 9px;
-        border: 1px solid var(--line);
-        border-radius: 999px;
-        color: var(--accent-dark);
-        background: var(--soft);
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        font-size: 0.78rem;
-        font-weight: 700;
+        padding: 5px 7px;
+        border: 1px solid rgba(97, 255, 159, 0.2);
+        border-radius: 4px;
+        color: var(--green);
+        background: rgba(97, 255, 159, 0.055);
+        font-size: 0.72rem;
+        font-weight: 800;
       }
 
-      .skills {
+      .skills-grid {
         display: grid;
         grid-template-columns: repeat(4, minmax(0, 1fr));
         gap: 12px;
-        padding: 0;
-        margin: 0;
-        list-style: none;
       }
 
-      .skills li,
+      .skill-card,
       .timeline-item,
       .contact-panel {
-        padding: 18px;
         border: 1px solid var(--line);
         border-radius: 8px;
-        background: rgba(255, 250, 242, 0.76);
-        font-family: "Helvetica Neue", Arial, sans-serif;
+        background: rgba(14, 23, 18, 0.82);
+      }
+
+      .skill-card {
+        min-height: 176px;
+        padding: 18px;
+      }
+
+      .card-label {
+        display: block;
+        margin-bottom: 20px;
+        color: var(--cyan);
+      }
+
+      .skill-card p {
+        color: var(--ink);
+        font-size: 0.98rem;
+        font-weight: 800;
       }
 
       .timeline {
@@ -295,166 +528,258 @@
 
       .timeline-item {
         display: grid;
-        grid-template-columns: 170px 1fr;
-        gap: 18px;
+        grid-template-columns: 150px 1fr;
+        gap: 22px;
+        padding: 18px;
+      }
+
+      .timeline-item time {
+        color: var(--green);
+        font-size: 0.86rem;
+        font-weight: 900;
       }
 
       .timeline-item strong {
         display: block;
-        margin-bottom: 5px;
+        margin-bottom: 7px;
       }
 
-      .timeline-item span {
+      .timeline-item p {
         color: var(--muted);
       }
 
       .contact-panel {
-        display: flex;
-        flex-wrap: wrap;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 22px;
         align-items: center;
-        justify-content: space-between;
-        gap: 20px;
-        padding: 24px;
+        padding: 22px;
       }
 
       .contact-panel p {
-        max-width: 620px;
+        max-width: 760px;
         color: var(--muted);
       }
 
       footer {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 12px;
         padding: 30px 0 46px;
-        border-top: 1px solid var(--line);
-        color: var(--muted);
-        font-family: "Helvetica Neue", Arial, sans-serif;
-        font-size: 0.92rem;
+        border-top: 1px solid rgba(97, 255, 159, 0.14);
+        color: var(--muted-2);
+        font-size: 0.82rem;
       }
 
-      @media (max-width: 860px) {
-        .site-nav,
-        .hero,
-        .section-head,
-        .timeline-item {
-          grid-template-columns: 1fr;
+      @media (prefers-reduced-motion: no-preference) {
+        .hero-main,
+        .terminal,
+        .project,
+        .skill-card,
+        .timeline-item,
+        .contact-panel {
+          animation: enter 540ms ease both;
         }
 
-        .site-nav {
-          align-items: flex-start;
+        .terminal {
+          animation-delay: 90ms;
+        }
+
+        .project:nth-child(2),
+        .skill-card:nth-child(2) {
+          animation-delay: 80ms;
+        }
+
+        .project:nth-child(3),
+        .skill-card:nth-child(3) {
+          animation-delay: 140ms;
+        }
+
+        @keyframes enter {
+          from {
+            opacity: 0;
+            transform: translateY(14px);
+          }
+
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+      }
+
+      @media (max-width: 960px) {
+        .hero,
+        .section-head,
+        .contact-panel {
+          grid-template-columns: 1fr;
         }
 
         .hero {
           min-height: auto;
-          padding: 42px 0 58px;
+          padding-top: 44px;
         }
 
-        .projects,
-        .skills {
-          grid-template-columns: 1fr;
+        .project,
+        .project.featured {
+          grid-column: span 6;
+        }
+
+        .skills-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
       }
 
-      @media (max-width: 560px) {
-        .page {
-          width: min(100% - 28px, 1120px);
+      @media (max-width: 680px) {
+        .shell {
+          width: min(100% - 26px, 1180px);
         }
 
-        .site-nav {
+        .topbar {
+          position: static;
           display: grid;
+          align-items: start;
         }
 
         .nav-links {
-          gap: 10px;
+          justify-content: flex-start;
         }
 
+        .hero {
+          padding-bottom: 54px;
+        }
+
+        .terminal-body {
+          padding: 16px;
+        }
+
+        .signal-grid,
+        .skills-grid,
+        .timeline-item {
+          grid-template-columns: 1fr;
+        }
+
+        .project,
+        .project.featured {
+          grid-column: span 12;
+        }
+
+        .actions,
         .button {
           width: 100%;
-          justify-content: center;
         }
       }
     </style>
   </head>
   <body>
-    <div class="page">
-      <nav class="site-nav" aria-label="Navigation principale">
-        <a class="brand" href="#">Alexandre Edmond</a>
+    <div class="shell">
+      <nav class="topbar" aria-label="Navigation principale">
+        <a class="brand" href="#">AE / Lab</a>
         <div class="nav-links">
           <a href="#projets">Projets</a>
-          <a href="#competences">Competences</a>
+          <a href="#competences">Stack</a>
           <a href="#parcours">Parcours</a>
           <a href="#contact">Contact</a>
         </div>
       </nav>
 
       <header class="hero">
-        <div>
-          <p class="eyebrow">IA / Reinforcement learning / Robotique</p>
-          <h1>Je construis des prototypes IA utiles, testables et concrets.</h1>
+        <div class="hero-main">
+          <p class="kicker">status: available for AI systems work</p>
+          <h1>Alexandre <span>Edmond</span></h1>
           <p class="hero-copy">
-            Developpeur oriente intelligence artificielle, reinforcement learning,
-            vision par ordinateur, systemes d'IA temps reel et interfaces web.
-            Je m'interesse aux projets qui relient modeles, donnees et usages reels.
+            <strong>AI Engineer / Data Scientist</strong> base a Strasbourg.
+            Je construis des prototypes en reinforcement learning, vision par
+            ordinateur, systemes IA temps reel et interfaces web exploitables.
           </p>
           <div class="actions">
-            <a class="button primary" href="#projets">Voir mes projets</a>
+            <a class="button primary" href="#projets">Explorer les projets</a>
             <a class="button" href="assets/cv-alexandre-edmond-2026-06-22.pdf">Telecharger le CV</a>
-            <a class="button" href="mailto:alexandre.edm.pro@gmail.com">Me contacter</a>
+            <a class="button" href="mailto:alexandre.edm.pro@gmail.com">Email</a>
           </div>
         </div>
 
-        <aside class="hero-card" aria-label="Resume rapide">
-          <dl>
-            <div>
-              <dt>Profil</dt>
-              <dd>Data Scientist / AI Engineer</dd>
+        <aside class="terminal" aria-label="Resume technique">
+          <div class="terminal-top">
+            <div class="dots" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
             </div>
-            <div>
-              <dt>Formation</dt>
-              <dd>Telecom Physique Strasbourg / Master informatique</dd>
+            <span class="terminal-label">portfolio.runtime</span>
+          </div>
+          <div class="terminal-body">
+            <p class="terminal-line"><span class="prompt">$</span> whoami</p>
+            <p class="terminal-line"><strong>Alexandre Edmond</strong> - AI Engineer, Data Scientist, builder de prototypes IA.</p>
+            <p class="terminal-line"><span class="prompt">$</span> focus --current</p>
+            <div class="signal-grid">
+              <div class="signal">
+                <b>RL</b>
+                <span>agents, environnements, simulation, decision</span>
+              </div>
+              <div class="signal">
+                <b>CV</b>
+                <span>OpenCV, YOLO, pipelines visuels</span>
+              </div>
+              <div class="signal">
+                <b>LLM</b>
+                <span>RAG, LoRA, Hugging Face, vLLM</span>
+              </div>
+              <div class="signal">
+                <b>OPS</b>
+                <span>FastAPI, Docker, CI, deploiement</span>
+              </div>
             </div>
-            <div>
-              <dt>Localisation</dt>
-              <dd>Strasbourg, France</dd>
+            <div class="stack-line" aria-label="Technologies principales">
+              <span class="chip">Python</span>
+              <span class="chip">PyTorch</span>
+              <span class="chip">NumPy</span>
+              <span class="chip">React</span>
+              <span class="chip">FastAPI</span>
+              <span class="chip">Docker</span>
             </div>
-            <div>
-              <dt>CV</dt>
-              <dd>Version du 22 juin 2026</dd>
-            </div>
-          </dl>
+          </div>
         </aside>
       </header>
 
       <main>
         <section class="section" id="projets" aria-labelledby="projects-title">
           <div class="section-head">
-            <h2 id="projects-title">Projets selectionnes</h2>
+            <div>
+              <span class="section-label">/projects</span>
+              <h2 id="projects-title">Modules actifs</h2>
+            </div>
             <p>
-              Une selection courte de projets pour montrer mes centres d'interet :
-              apprentissage par renforcement, simulation, interfaces web, systemes
-              locaux et experimentation IA.
+              Selection courte de projets qui montrent le mieux mon terrain :
+              apprentissage par renforcement, simulation, interfaces web,
+              systemes locaux et experimentation IA.
             </p>
           </div>
 
           <ul class="projects">
-            <li class="project">
+            <li class="project featured">
+              <span class="project-index">EXP-001</span>
               <h3><a href="https://github.com/AlexandreEDMOND/numpy-rl-racer">numpy-rl-racer</a></h3>
               <p>
-                Prototype de course en reinforcement learning construit autour de
-                Python et NumPy pour explorer des agents simples et controlables.
+                Prototype de course en reinforcement learning avec Python et
+                NumPy pour explorer des agents simples, lisibles et controlables.
               </p>
-              <ul class="tags" aria-label="Technologies">
+              <ul class="tags" aria-label="Technologies numpy-rl-racer">
                 <li>Python</li>
                 <li>NumPy</li>
-                <li>RL</li>
+                <li>Reinforcement learning</li>
               </ul>
             </li>
 
-            <li class="project">
+            <li class="project featured">
+              <span class="project-index">EXP-002</span>
               <h3><a href="https://github.com/AlexandreEDMOND/Circle-Seeker-RL">Circle-Seeker-RL</a></h3>
               <p>
                 Environnement RL avec visualisation pygame, controle manuel,
                 baseline aleatoire, tests et integration continue.
               </p>
-              <ul class="tags" aria-label="Technologies">
+              <ul class="tags" aria-label="Technologies Circle-Seeker-RL">
                 <li>Python</li>
                 <li>pygame</li>
                 <li>Gymnasium</li>
@@ -462,25 +787,27 @@
             </li>
 
             <li class="project">
+              <span class="project-index">SYS-003</span>
               <h3><a href="https://github.com/AlexandreEDMOND/syswatch">syswatch</a></h3>
               <p>
                 Moniteur systeme local pour suivre disque, RAM, Wi-Fi, puissance
-                et autres metriques utiles depuis une interface web.
+                et metriques machine depuis une interface web.
               </p>
-              <ul class="tags" aria-label="Technologies">
+              <ul class="tags" aria-label="Technologies syswatch">
                 <li>JavaScript</li>
-                <li>Systeme</li>
                 <li>Dashboard</li>
+                <li>Systeme</li>
               </ul>
             </li>
 
             <li class="project">
+              <span class="project-index">HCI-004</span>
               <h3><a href="https://github.com/AlexandreEDMOND/TonySpark">TonySpark</a></h3>
               <p>
                 Interface React de controle gestuel par webcam avec MediaPipe,
                 orientee interaction humain-machine.
               </p>
-              <ul class="tags" aria-label="Technologies">
+              <ul class="tags" aria-label="Technologies TonySpark">
                 <li>React</li>
                 <li>MediaPipe</li>
                 <li>Webcam</li>
@@ -488,12 +815,13 @@
             </li>
 
             <li class="project">
+              <span class="project-index">GEN-005</span>
               <h3><a href="https://github.com/AlexandreEDMOND/TTS-GAN">TTS-GAN</a></h3>
               <p>
-                Implementation d'un GAN base sur Transformer pour la generation
-                de series temporelles dans un contexte collaboratif.
+                GAN base sur Transformer pour la generation de series temporelles
+                dans un contexte collaboratif avec HagerGroup.
               </p>
-              <ul class="tags" aria-label="Technologies">
+              <ul class="tags" aria-label="Technologies TTS-GAN">
                 <li>Jupyter</li>
                 <li>GAN</li>
                 <li>Time series</li>
@@ -501,12 +829,13 @@
             </li>
 
             <li class="project">
+              <span class="project-index">AGT-006</span>
               <h3><a href="https://github.com/AlexandreEDMOND/zero_to_skyjo">zero_to_skyjo</a></h3>
               <p>
-                Agent IA qui apprend a jouer a Skyjo depuis zero, utile pour
-                experimenter des strategies et boucles d'apprentissage.
+                Agent IA qui apprend a jouer a Skyjo depuis zero pour tester des
+                strategies et des boucles d'apprentissage.
               </p>
-              <ul class="tags" aria-label="Technologies">
+              <ul class="tags" aria-label="Technologies zero_to_skyjo">
                 <li>Python</li>
                 <li>Agent IA</li>
                 <li>Jeu</li>
@@ -517,33 +846,51 @@
 
         <section class="section" id="competences" aria-labelledby="skills-title">
           <div class="section-head">
-            <h2 id="skills-title">Competences</h2>
+            <div>
+              <span class="section-label">/stack</span>
+              <h2 id="skills-title">Stack technique</h2>
+            </div>
             <p>
-              Des competences reliees a des projets et experiences : construire,
-              tester, deployer et iterer sur des prototypes IA.
+              Pas de jauges arbitraires. Seulement les outils que j'utilise pour
+              construire, tester, deployer et iterer sur des prototypes IA.
             </p>
           </div>
 
-          <ul class="skills">
-            <li>Python, C++, C, Bash, SQL</li>
-            <li>PyTorch, Transformers, OpenCV, YOLO, scikit-learn, NumPy</li>
-            <li>Docker, Kubernetes, GitHub Actions, MLflow, FastAPI, AWS</li>
-            <li>vLLM, LoRA, Hugging Face, RAG, Whisper</li>
-          </ul>
+          <div class="skills-grid">
+            <article class="skill-card">
+              <span class="card-label">languages</span>
+              <p>Python, C++, C, Bash, SQL</p>
+            </article>
+            <article class="skill-card">
+              <span class="card-label">machine-learning</span>
+              <p>PyTorch, Transformers, OpenCV, YOLO, scikit-learn, NumPy</p>
+            </article>
+            <article class="skill-card">
+              <span class="card-label">mlops</span>
+              <p>Docker, Kubernetes, GitHub Actions, MLflow, FastAPI, AWS</p>
+            </article>
+            <article class="skill-card">
+              <span class="card-label">llm-systems</span>
+              <p>vLLM, LoRA, Hugging Face, RAG, Whisper</p>
+            </article>
+          </div>
         </section>
 
         <section class="section" id="parcours" aria-labelledby="journey-title">
           <div class="section-head">
-            <h2 id="journey-title">Parcours</h2>
+            <div>
+              <span class="section-label">/timeline</span>
+              <h2 id="journey-title">Parcours</h2>
+            </div>
             <p>
-              Un apercu volontairement court. Le CV donne le detail complet des
-              experiences, dates et missions.
+              Version compacte. Le detail complet des missions, dates et
+              resultats est disponible dans le CV PDF.
             </p>
           </div>
 
           <div class="timeline">
             <article class="timeline-item">
-              <span>2024</span>
+              <time>2024</time>
               <div>
                 <strong>Stagiaire chercheur en Deep Reinforcement Learning / HYDRO</strong>
                 <p>
@@ -554,7 +901,7 @@
             </article>
 
             <article class="timeline-item">
-              <span>2023 - 2024</span>
+              <time>2023 - 2024</time>
               <div>
                 <strong>Data Scientist / AI Engineer / Kyndryl</strong>
                 <p>
@@ -565,7 +912,7 @@
             </article>
 
             <article class="timeline-item">
-              <span>2022 - 2025</span>
+              <time>2022 - 2025</time>
               <div>
                 <strong>Telecom Physique Strasbourg / Universite de Strasbourg</strong>
                 <p>
@@ -579,17 +926,20 @@
 
         <section class="section" id="contact" aria-labelledby="contact-title">
           <div class="section-head">
-            <h2 id="contact-title">Contact</h2>
+            <div>
+              <span class="section-label">/contact</span>
+              <h2 id="contact-title">Demarrer un echange</h2>
+            </div>
             <p>
-              Pour discuter d'un projet IA, d'une opportunite ou simplement voir
-              le code, les liens essentiels sont ici.
+              Pour un projet IA, une opportunite Data Scientist / AI Engineer,
+              ou simplement pour voir le code.
             </p>
           </div>
 
           <div class="contact-panel">
             <p>
-              Le CV le plus recent ajoute au site date du 22 juin 2026. Il est
-              disponible en PDF directement depuis cette page.
+              CV le plus recent ajoute au site : 22 juin 2026. Disponible en PDF
+              avec mes experiences, formations et competences detaillees.
             </p>
             <div class="actions">
               <a class="button primary" href="mailto:alexandre.edm.pro@gmail.com">Email</a>
@@ -601,7 +951,8 @@
       </main>
 
       <footer>
-        <p>&copy; 2026 Alexandre Edmond. Portfolio publie avec GitHub Pages.</p>
+        <span>Alexandre Edmond / AI portfolio</span>
+        <span>GitHub Pages / 2026</span>
       </footer>
     </div>
   </body>
