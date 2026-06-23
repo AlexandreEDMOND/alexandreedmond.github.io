@@ -7,6 +7,26 @@ https://alexandreedmond.github.io/
 Ce depot contient la premiere version du portfolio. L'objectif est de partir
 d'une page tres simple, puis de l'ameliorer progressivement.
 
+## Structure du depot
+
+```txt
+alexandreedmond.github.io/
+|-- index.html
+|-- css/
+|   `-- styles.css
+|-- js/
+|   `-- main.js
+|-- assets/
+|   |-- favicon.svg
+|   `-- cv-alexandre-edmond-2026-06-22.pdf
+`-- README.md
+```
+
+- `index.html` garde la structure et le contenu de la page.
+- `css/styles.css` contient toute la direction artistique et le responsive.
+- `js/main.js` contient les animations progressives.
+- `assets/` regroupe les fichiers statiques comme le CV et le favicon.
+
 ## Recommandations prioritaires
 
 1. Clarifier le positionnement en haut de page
@@ -154,8 +174,8 @@ comprehensibles et que les liens fonctionnent.
 
 ## Conseils techniques
 
-- Garder `index.html` simple tant que le site est petit.
-- Extraire le CSS dans `style.css` quand le fichier devient trop long.
+- Garder `index.html` centre sur le contenu et la structure.
+- Garder le CSS dans `css/styles.css`.
 - Ajouter un dossier `assets/` pour les images et le CV.
 - Optimiser les images avant de les publier.
 - Ajouter les balises SEO de base :
