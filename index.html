@@ -3,304 +3,140 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta
-      name="description"
-      content="Portfolio d'Alexandre Edmond, AI Engineer et Data Scientist specialise en IA, reinforcement learning, robotique et outils web."
-    >
-    <meta property="og:title" content="Alexandre Edmond - AI Engineer">
-    <meta
-      property="og:description"
-      content="Projets en reinforcement learning, vision par ordinateur, systemes IA et outils web."
-    >
+    <meta name="description" content="Portfolio d'Alexandre Edmond, ingénieur IA et développeur créatif.">
+    <meta property="og:title" content="Alexandre Edmond — AI Engineer">
+    <meta property="og:description" content="Projets en intelligence artificielle, simulation et interfaces web.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://alexandreedmond.github.io/">
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <title>Alexandre Edmond - AI Engineer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <title>Alexandre Edmond — AI Engineer</title>
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
-    <div class="shell">
-      <nav class="topbar" aria-label="Navigation principale">
-        <a class="brand" href="#">AE / Lab</a>
-        <div class="nav-links">
-          <a href="#projets">Projets</a>
-          <a href="#competences">Stack</a>
-          <a href="#parcours">Parcours</a>
-          <a href="#contact">Contact</a>
-        </div>
+    <header class="site-header">
+      <a class="monogram" href="#top" aria-label="Retour en haut">A<span>E</span></a>
+      <nav aria-label="Navigation principale">
+        <a href="#work">Projets</a>
+        <a href="#about">À propos</a>
+        <a href="#contact">Contact</a>
       </nav>
+      <a class="header-cta" href="mailto:alexandre.edm.pro@gmail.com">Écrire <span>↗</span></a>
+    </header>
 
-      <header class="hero">
-        <div class="hero-main" data-reveal>
-          <p class="kicker">status: available for AI systems work</p>
-          <h1>Alexandre <span>Edmond</span></h1>
-          <p class="hero-copy">
-            <strong>AI Engineer / Data Scientist</strong> base a Strasbourg.
-            Je construis des prototypes en reinforcement learning, vision par
-            ordinateur, systemes IA temps reel et interfaces web exploitables.
-          </p>
-          <div class="actions">
-            <a class="button primary" href="#projets">Explorer les projets</a>
-            <a class="button" href="assets/cv-alexandre-edmond-2026-06-22.pdf">Telecharger le CV</a>
-            <a class="button" href="mailto:alexandre.edm.pro@gmail.com">Email</a>
-          </div>
+    <main id="top">
+      <section class="hero">
+        <p class="eyebrow" data-reveal>Portfolio 2026 <span>•</span> Strasbourg, France</p>
+        <h1 data-reveal>Alexandre<br><em>Edmond</em></h1>
+        <div class="hero-footer" data-reveal>
+          <p>Ingénieur IA qui conçoit des systèmes intelligents, des simulations et des interfaces qui leur donnent une forme.</p>
+          <a class="round-link" href="#work" aria-label="Découvrir les projets">↓</a>
+        </div>
+        <div class="hero-orbit" aria-hidden="true"></div>
+      </section>
+
+      <section class="intro" id="about">
+        <p class="section-index">01 / Profil</p>
+        <div>
+          <p class="large-copy" data-reveal>J’aime partir d’une question difficile, construire un prototype lisible, puis le rendre concret — de l’agent qui apprend à l’outil que l’on utilise.</p>
+          <a class="text-link" href="assets/cv-alexandre-edmond-2026-06-22.pdf">Voir le CV <span>↗</span></a>
+        </div>
+      </section>
+
+      <section class="work" id="work" aria-labelledby="work-title">
+        <div class="section-heading">
+          <p class="section-index">02 / Sélection</p>
+          <h2 id="work-title">Projets<br>choisis<span>.</span></h2>
+          <p>Une sélection de travaux entre apprentissage automatique, expérimentation et produit.</p>
         </div>
 
-        <aside class="terminal" aria-label="Resume technique" data-reveal>
-          <div class="terminal-top">
-            <div class="dots" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-            </div>
-            <span class="terminal-label">portfolio.runtime</span>
-          </div>
-          <div class="terminal-body">
-            <p class="terminal-line"><span class="prompt">$</span> whoami</p>
-            <p class="terminal-line"><strong>Alexandre Edmond</strong> - AI Engineer, Data Scientist, builder de prototypes IA.</p>
-            <p class="terminal-line"><span class="prompt">$</span> focus --current</p>
-            <div class="signal-grid">
-              <div class="signal">
-                <b>RL</b>
-                <span>agents, environnements, simulation, decision</span>
-              </div>
-              <div class="signal">
-                <b>CV</b>
-                <span>OpenCV, YOLO, pipelines visuels</span>
-              </div>
-              <div class="signal">
-                <b>LLM</b>
-                <span>RAG, LoRA, Hugging Face, vLLM</span>
-              </div>
-              <div class="signal">
-                <b>OPS</b>
-                <span>FastAPI, Docker, CI, deploiement</span>
-              </div>
-            </div>
-            <div class="stack-line" aria-label="Technologies principales">
-              <span class="chip">Python</span>
-              <span class="chip">PyTorch</span>
-              <span class="chip">NumPy</span>
-              <span class="chip">React</span>
-              <span class="chip">FastAPI</span>
-              <span class="chip">Docker</span>
-            </div>
-          </div>
-        </aside>
-      </header>
-
-      <main>
-        <section class="section" id="projets" aria-labelledby="projects-title">
-          <div class="section-head" data-reveal>
-            <div>
-              <span class="section-label">/projects</span>
-              <h2 id="projects-title">Modules actifs</h2>
-            </div>
-            <p>
-              Selection courte de projets qui montrent le mieux mon terrain :
-              apprentissage par renforcement, simulation, interfaces web,
-              systemes locaux et experimentation IA.
-            </p>
-          </div>
-
-          <ul class="projects">
-            <li class="project featured" data-reveal>
-              <span class="project-index">EXP-001</span>
-              <h3><a href="https://github.com/AlexandreEDMOND/numpy-rl-racer">numpy-rl-racer</a></h3>
-              <p>
-                Prototype de course en reinforcement learning avec Python et
-                NumPy pour explorer des agents simples, lisibles et controlables.
-              </p>
-              <ul class="tags" aria-label="Technologies numpy-rl-racer">
-                <li>Python</li>
-                <li>NumPy</li>
-                <li>Reinforcement learning</li>
-              </ul>
-            </li>
-
-            <li class="project featured" data-reveal>
-              <span class="project-index">EXP-002</span>
-              <h3><a href="https://github.com/AlexandreEDMOND/Circle-Seeker-RL">Circle-Seeker-RL</a></h3>
-              <p>
-                Environnement RL avec visualisation pygame, controle manuel,
-                baseline aleatoire, tests et integration continue.
-              </p>
-              <ul class="tags" aria-label="Technologies Circle-Seeker-RL">
-                <li>Python</li>
-                <li>pygame</li>
-                <li>Gymnasium</li>
-              </ul>
-            </li>
-
-            <li class="project" data-reveal>
-              <span class="project-index">SYS-003</span>
-              <h3><a href="https://github.com/AlexandreEDMOND/syswatch">syswatch</a></h3>
-              <p>
-                Moniteur systeme local pour suivre disque, RAM, Wi-Fi, puissance
-                et metriques machine depuis une interface web.
-              </p>
-              <ul class="tags" aria-label="Technologies syswatch">
-                <li>JavaScript</li>
-                <li>Dashboard</li>
-                <li>Systeme</li>
-              </ul>
-            </li>
-
-            <li class="project" data-reveal>
-              <span class="project-index">HCI-004</span>
-              <h3><a href="https://github.com/AlexandreEDMOND/TonySpark">TonySpark</a></h3>
-              <p>
-                Interface React de controle gestuel par webcam avec MediaPipe,
-                orientee interaction humain-machine.
-              </p>
-              <ul class="tags" aria-label="Technologies TonySpark">
-                <li>React</li>
-                <li>MediaPipe</li>
-                <li>Webcam</li>
-              </ul>
-            </li>
-
-            <li class="project" data-reveal>
-              <span class="project-index">GEN-005</span>
-              <h3><a href="https://github.com/AlexandreEDMOND/TTS-GAN">TTS-GAN</a></h3>
-              <p>
-                GAN base sur Transformer pour la generation de series temporelles
-                dans un contexte collaboratif avec HagerGroup.
-              </p>
-              <ul class="tags" aria-label="Technologies TTS-GAN">
-                <li>Jupyter</li>
-                <li>GAN</li>
-                <li>Time series</li>
-              </ul>
-            </li>
-
-            <li class="project" data-reveal>
-              <span class="project-index">AGT-006</span>
-              <h3><a href="https://github.com/AlexandreEDMOND/zero_to_skyjo">zero_to_skyjo</a></h3>
-              <p>
-                Agent IA qui apprend a jouer a Skyjo depuis zero pour tester des
-                strategies et des boucles d'apprentissage.
-              </p>
-              <ul class="tags" aria-label="Technologies zero_to_skyjo">
-                <li>Python</li>
-                <li>Agent IA</li>
-                <li>Jeu</li>
-              </ul>
-            </li>
-          </ul>
-        </section>
-
-        <section class="section" id="competences" aria-labelledby="skills-title">
-          <div class="section-head" data-reveal>
-            <div>
-              <span class="section-label">/stack</span>
-              <h2 id="skills-title">Stack technique</h2>
-            </div>
-            <p>
-              Pas de jauges arbitraires. Seulement les outils que j'utilise pour
-              construire, tester, deployer et iterer sur des prototypes IA.
-            </p>
-          </div>
-
-          <div class="skills-grid">
-            <article class="skill-card" data-reveal>
-              <span class="card-label">languages</span>
-              <p>Python, C++, C, Bash, SQL</p>
-            </article>
-            <article class="skill-card" data-reveal>
-              <span class="card-label">machine-learning</span>
-              <p>PyTorch, Transformers, OpenCV, YOLO, scikit-learn, NumPy</p>
-            </article>
-            <article class="skill-card" data-reveal>
-              <span class="card-label">mlops</span>
-              <p>Docker, Kubernetes, GitHub Actions, MLflow, FastAPI, AWS</p>
-            </article>
-            <article class="skill-card" data-reveal>
-              <span class="card-label">llm-systems</span>
-              <p>vLLM, LoRA, Hugging Face, RAG, Whisper</p>
-            </article>
-          </div>
-        </section>
-
-        <section class="section" id="parcours" aria-labelledby="journey-title">
-          <div class="section-head" data-reveal>
-            <div>
-              <span class="section-label">/timeline</span>
-              <h2 id="journey-title">Parcours</h2>
-            </div>
-            <p>
-              Version compacte. Le detail complet des missions, dates et
-              resultats est disponible dans le CV PDF.
-            </p>
-          </div>
-
-          <div class="timeline">
-            <article class="timeline-item" data-reveal>
-              <time>2024</time>
+        <div class="project-list">
+          <article class="project project-large" data-reveal>
+            <a class="project-visual visual-racer" href="https://github.com/AlexandreEDMOND/numpy-rl-racer" aria-label="Ouvrir numpy-rl-racer sur GitHub">
+              <span class="visual-mark">01</span>
+              <span class="visual-word">RACER</span>
+            </a>
+            <div class="project-meta">
               <div>
-                <strong>Stagiaire chercheur en Deep Reinforcement Learning / HYDRO</strong>
-                <p>
-                  PoC en solo pour optimiser une methode de decoupe via deep
-                  learning et reinforcement learning.
-                </p>
+                <p class="project-number">(001)</p>
+                <h3>numpy-rl-racer</h3>
               </div>
-            </article>
-
-            <article class="timeline-item" data-reveal>
-              <time>2023 - 2024</time>
-              <div>
-                <strong>Data Scientist / AI Engineer / Kyndryl</strong>
-                <p>
-                  APIs d'indexation, classification et extraction de documents
-                  avec des modeles IA et des pipelines deployes.
-                </p>
-              </div>
-            </article>
-
-            <article class="timeline-item" data-reveal>
-              <time>2022 - 2025</time>
-              <div>
-                <strong>Telecom Physique Strasbourg / Universite de Strasbourg</strong>
-                <p>
-                  Grande ecole d'ingenieur et double diplome master en
-                  informatique, data science et intelligence artificielle.
-                </p>
-              </div>
-            </article>
-          </div>
-        </section>
-
-        <section class="section" id="contact" aria-labelledby="contact-title">
-          <div class="section-head" data-reveal>
-            <div>
-              <span class="section-label">/contact</span>
-              <h2 id="contact-title">Demarrer un echange</h2>
+              <p>Un terrain de jeu de course en NumPy pour observer comment un agent apprend, échoue et s’améliore.</p>
+              <a href="https://github.com/AlexandreEDMOND/numpy-rl-racer">Voir le projet <span>↗</span></a>
             </div>
-            <p>
-              Pour un projet IA, une opportunite Data Scientist / AI Engineer,
-              ou simplement pour voir le code.
-            </p>
+          </article>
+
+          <div class="project-grid">
+            <article class="project" data-reveal>
+              <a class="project-visual visual-circle" href="https://github.com/AlexandreEDMOND/Circle-Seeker-RL" aria-label="Ouvrir Circle-Seeker-RL sur GitHub">
+                <span class="visual-mark">02</span>
+                <span class="orb orb-one"></span><span class="orb orb-two"></span><span class="orb orb-three"></span>
+              </a>
+              <div class="project-meta">
+                <p class="project-number">(002)</p>
+                <h3>Circle Seeker RL</h3>
+                <p>Un environnement d’apprentissage par renforcement, testé et visualisé en temps réel.</p>
+                <a href="https://github.com/AlexandreEDMOND/Circle-Seeker-RL">Voir le projet <span>↗</span></a>
+              </div>
+            </article>
+
+            <article class="project" data-reveal>
+              <a class="project-visual visual-watch" href="https://github.com/AlexandreEDMOND/syswatch" aria-label="Ouvrir syswatch sur GitHub">
+                <span class="visual-mark">03</span>
+                <span class="scan-line"></span>
+                <span class="visual-word">SYS<br>WATCH</span>
+              </a>
+              <div class="project-meta">
+                <p class="project-number">(003)</p>
+                <h3>syswatch</h3>
+                <p>Un tableau de bord local qui rend l’état d’une machine immédiatement lisible.</p>
+                <a href="https://github.com/AlexandreEDMOND/syswatch">Voir le projet <span>↗</span></a>
+              </div>
+            </article>
           </div>
 
-          <div class="contact-panel" data-reveal>
-            <p>
-              CV le plus recent ajoute au site : 22 juin 2026. Disponible en PDF
-              avec mes experiences, formations et competences detaillees.
-            </p>
-            <div class="actions">
-              <a class="button primary" href="mailto:alexandre.edm.pro@gmail.com">Email</a>
-              <a class="button" href="https://github.com/AlexandreEDMOND">GitHub</a>
-              <a class="button" href="assets/cv-alexandre-edmond-2026-06-22.pdf">CV PDF</a>
+          <article class="project project-wide" data-reveal>
+            <a class="project-visual visual-spark" href="https://github.com/AlexandreEDMOND/TonySpark" aria-label="Ouvrir TonySpark sur GitHub">
+              <span class="visual-mark">04</span>
+              <span class="gesture">✦</span>
+              <span class="visual-word">TONYSPARK</span>
+            </a>
+            <div class="project-meta">
+              <div>
+                <p class="project-number">(004)</p>
+                <h3>TonySpark</h3>
+              </div>
+              <p>Une interface React de contrôle gestuel par webcam, pensée comme une interaction directe avec l’écran.</p>
+              <a href="https://github.com/AlexandreEDMOND/TonySpark">Voir le projet <span>↗</span></a>
             </div>
-          </div>
-        </section>
-      </main>
+          </article>
+        </div>
+      </section>
 
-      <footer>
-        <span>Alexandre Edmond / AI portfolio</span>
-        <span>GitHub Pages / 2026</span>
-      </footer>
-    </div>
-    <script src="js/main.js" defer></script>
+      <section class="capabilities">
+        <p class="section-index">03 / Savoir-faire</p>
+        <ul>
+          <li data-reveal><span>01</span> Intelligence artificielle <i>Modèles, agents, vision</i></li>
+          <li data-reveal><span>02</span> Systèmes & données <i>Python, APIs, pipelines</i></li>
+          <li data-reveal><span>03</span> Interfaces créatives <i>React, web, interaction</i></li>
+        </ul>
+      </section>
+
+      <section class="contact" id="contact">
+        <p class="section-index">04 / Contact</p>
+        <div data-reveal>
+          <p>Un projet, une idée, un défi ?</p>
+          <a href="mailto:alexandre.edm.pro@gmail.com">Parlons-en<span>↗</span></a>
+        </div>
+        <footer>
+          <span>© Alexandre Edmond 2026</span>
+          <a href="https://github.com/AlexandreEDMOND">GitHub ↗</a>
+          <a href="assets/cv-alexandre-edmond-2026-06-22.pdf">CV ↗</a>
+        </footer>
+      </section>
+    </main>
+    <script src="js/main.js"></script>
   </body>
 </html>
