@@ -12,17 +12,34 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.3.1/model-viewer.min.js"></script>
     <title>Alexandre Edmond — AI Engineer</title>
     <link rel="stylesheet" href="css/styles.css">
   </head>
   <body>
+    <svg class="liquid-filter" aria-hidden="true">
+      <filter id="liquid-text">
+        <feTurbulence type="fractalNoise" baseFrequency=".008 .035" numOctaves="1" seed="7" result="noise">
+          <animate attributeName="baseFrequency" dur="2.8s" values=".008 .035;.018 .012;.008 .035" repeatCount="indefinite" />
+        </feTurbulence>
+        <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" xChannelSelector="R" yChannelSelector="G" />
+      </filter>
+    </svg>
+    <span class="fluid-cursor" aria-hidden="true"></span>
     <main id="top">
       <section class="hero">
-        <h1 data-reveal>Alexandre<br><em>Edmond</em></h1>
+        <div class="hero-name-zone" data-name-zone>
+          <h1 data-reveal>Alexandre<br><em>Edmond</em></h1>
+          <span class="name-cursor" aria-hidden="true"></span>
+        </div>
         <div class="hero-footer" data-reveal>
           <a class="round-link" href="#work" aria-label="Découvrir les projets">↓</a>
         </div>
-        <div class="hero-orbit" aria-hidden="true"></div>
+        <div class="hero-art" aria-hidden="true">
+          <span class="hero-object hero-object-large"><model-viewer src="assets/models/Robot.glb" alt="" loading="eager" auto-rotate rotation-per-second="18deg" camera-orbit="35deg 72deg 105%" interaction-prompt="none" data-azimuth="35" data-polar="72" data-radius="105" data-speed="18"></model-viewer></span>
+          <span class="hero-object hero-object-mid"><model-viewer src="assets/models/Laptop.glb" alt="" loading="eager" auto-rotate rotation-per-second="-14deg" camera-orbit="-32deg 70deg 105%" interaction-prompt="none" data-azimuth="-32" data-polar="70" data-radius="105" data-speed="-14"></model-viewer></span>
+          <span class="hero-object hero-object-small"><model-viewer src="assets/models/Graphics%20card.glb" alt="" loading="eager" auto-rotate rotation-per-second="24deg" camera-orbit="38deg 68deg 110%" interaction-prompt="none" data-azimuth="38" data-polar="68" data-radius="110" data-speed="24"></model-viewer></span>
+        </div>
       </section>
 
       <section class="intro" id="about">
