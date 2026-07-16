@@ -1,232 +1,133 @@
 const revealItems = document.querySelectorAll("[data-reveal]");
 const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hero = document.querySelector(".hero");
-const nameZone = document.querySelector("[data-name-zone]");
-const heroArt = document.querySelector(".hero-art");
-const heroObjects = document.querySelectorAll(".hero-object");
+const lifeField = document.querySelector("[data-life-field]");
 let pointerFrame;
 
 if (reducedMotion || !("IntersectionObserver" in window)) {
   revealItems.forEach((item) => item.classList.add("is-visible"));
 } else {
   const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("is-visible");
-          observer.unobserve(entry.target);
-        }
-      });
-    },
+    (entries) => entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    }),
     { threshold: 0.14 }
   );
-
   revealItems.forEach((item) => observer.observe(item));
 }
 
-if (hero && nameZone && !reducedMotion) {
-  nameZone.addEventListener("pointerenter", () => hero.classList.add("is-name-active"));
-  nameZone.addEventListener("pointerleave", () => {
-    hero.classList.remove("is-name-active");
-  });
-
+if (!reducedMotion) {
   document.addEventListener("pointermove", (event) => {
     if (event.pointerType !== "mouse" || pointerFrame) return;
-
     pointerFrame = requestAnimationFrame(() => {
-      const x = (event.clientX / window.innerWidth - .5) * 2;
-      const y = (event.clientY / window.innerHeight - .5) * 2;
-
       document.body.classList.add("is-fluid-active");
       document.body.style.setProperty("--cursor-x", `${event.clientX}px`);
       document.body.style.setProperty("--cursor-y", `${event.clientY}px`);
-      hero.style.setProperty("--pointer-shift-x", `${(x * 7).toFixed(1)}px`);
-      hero.style.setProperty("--pointer-shift-y", `${(y * 7).toFixed(1)}px`);
-      hero.style.setProperty("--pointer-rotate-x", `${(y * -11).toFixed(1)}deg`);
-      hero.style.setProperty("--pointer-rotate-y", `${(x * 14).toFixed(1)}deg`);
       pointerFrame = undefined;
     });
   });
 }
 
-if (heroArt && heroObjects.length && !reducedMotion) {
-  const objects = [...heroObjects].map((element, index) => ({
-    element,
-    index,
-    x: 0,
-    y: 0,
-    vx: 0,
-    vy: 0,
-    radius: 0,
-    dragging: false,
-    pointerId: null,
-    grabX: 0,
-    grabY: 0,
-    lastX: 0,
-    lastY: 0,
-    lastTime: 0
+if (hero && lifeField) {
+  const context = lifeField.getContext("2d");
+  const cells = Array.from({ length: 170 }, (_, index) => ({
+    x: Math.random(),
+    y: Math.random(),
+    seed: Math.random() * Math.PI * 2,
+    size: 1.2 + Math.random() * 2.7,
+    hue: index % 7 === 0 ? 8 : index % 5 === 0 ? 218 : 52
   }));
-  let arena = { left: 0, top: 0, width: 0, height: 0 };
-  let lastFrame = 0;
+  const colonies = Array.from({ length: 4 }, (_, index) => ({
+    phase: index * Math.PI / 2,
+    x: .2 + (index % 2) * .58,
+    y: .24 + Math.floor(index / 2) * .5
+  }));
+  const pointer = { x: -.5, y: -.5, lastPulse: 0 };
+  const pulses = [];
+  let width = 0;
+  let height = 0;
+  let lastBloom = 0;
 
-  const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
-  const measureArena = () => {
-    const bounds = heroArt.getBoundingClientRect();
-    arena = { left: bounds.left, top: bounds.top, width: bounds.width, height: bounds.height };
-    objects.forEach((object) => {
-      object.radius = object.element.getBoundingClientRect().width / 2;
+  const resize = () => {
+    const bounds = hero.getBoundingClientRect();
+    const density = Math.min(window.devicePixelRatio, 2);
+    width = bounds.width;
+    height = bounds.height;
+    lifeField.width = Math.round(width * density);
+    lifeField.height = Math.round(height * density);
+    context.setTransform(density, 0, 0, density, 0, 0);
+  };
+  const position = (cell, time) => ({
+    x: (cell.x + Math.sin(time * .00015 + cell.seed) * .08 + Math.sin(time * .00006 + cell.seed * 2.3) * .05) * width,
+    y: (cell.y + Math.cos(time * .00013 + cell.seed * 1.4) * .07 + Math.sin(time * .00008 + cell.seed) * .06) * height
+  });
+  const vitality = (x, y, time) => colonies.reduce((strongest, colony) => {
+    const centerX = (colony.x + Math.sin(time * .00011 + colony.phase) * .1) * width;
+    const centerY = (colony.y + Math.cos(time * .00009 + colony.phase * 1.7) * .08) * height;
+    const radius = 150 + Math.sin(time * .0008 + colony.phase) * 48;
+    return Math.max(strongest, Math.max(0, 1 - Math.hypot(x - centerX, y - centerY) / radius));
+  }, 0);
+  const draw = (time) => {
+    context.clearRect(0, 0, width, height);
+    const points = cells.map((cell) => {
+      const point = position(cell, time);
+      return { cell, ...point, life: vitality(point.x, point.y, time) };
     });
-  };
-  const draw = (object) => {
-    object.element.style.transform = `translate3d(${(object.x - object.radius).toFixed(1)}px, ${(object.y - object.radius).toFixed(1)}px, 0)`;
-  };
-  const keepInsideArena = (object) => {
-    if (object.x - object.radius < 0) {
-      object.x = object.radius;
-      object.vx = Math.abs(object.vx) * .58;
-      object.vy *= .72;
+    if (!reducedMotion && time - lastBloom > 2200) {
+      const colony = colonies[Math.floor(time / 2200) % colonies.length];
+      pulses.push({
+        x: (colony.x + Math.sin(time * .00011 + colony.phase) * .1) * width,
+        y: (colony.y + Math.cos(time * .00009 + colony.phase * 1.7) * .08) * height,
+        time
+      });
+      lastBloom = time;
     }
-    if (object.x + object.radius > arena.width) {
-      object.x = arena.width - object.radius;
-      object.vx = -Math.abs(object.vx) * .58;
-      object.vy *= .72;
-    }
-    if (object.y - object.radius < 0) {
-      object.y = object.radius;
-      object.vy = Math.abs(object.vy) * .58;
-      object.vx *= .72;
-    }
-    if (object.y + object.radius > arena.height) {
-      object.y = arena.height - object.radius;
-      object.vy = -Math.abs(object.vy) * .58;
-      object.vx *= .72;
-    }
-  };
-  const resolveCollision = (first, second) => {
-    const dx = second.x - first.x;
-    const dy = second.y - first.y;
-    const distance = Math.hypot(dx, dy) || .001;
-    const minimumDistance = first.radius + second.radius;
+    while (pulses.length && time - pulses[0].time >= 2600) pulses.shift();
 
-    if (distance >= minimumDistance) return;
-
-    const nx = dx / distance;
-    const ny = dy / distance;
-    const overlap = minimumDistance - distance;
-    const firstShare = first.dragging ? 0 : second.dragging ? 1 : .5;
-    const secondShare = second.dragging ? 0 : first.dragging ? 1 : .5;
-    first.x -= nx * overlap * firstShare;
-    first.y -= ny * overlap * firstShare;
-    second.x += nx * overlap * secondShare;
-    second.y += ny * overlap * secondShare;
-
-    const relativeVelocity = (second.vx - first.vx) * nx + (second.vy - first.vy) * ny;
-    if (relativeVelocity >= 0) return;
-
-    const impulse = -(1.48 * relativeVelocity) / 2;
-    first.vx -= impulse * nx;
-    first.vy -= impulse * ny;
-    second.vx += impulse * nx;
-    second.vy += impulse * ny;
-
-    const tx = -ny;
-    const ty = nx;
-    const tangentVelocity = (second.vx - first.vx) * tx + (second.vy - first.vy) * ty;
-    const friction = clamp(-tangentVelocity / 2, -Math.abs(impulse) * .38, Math.abs(impulse) * .38);
-    first.vx -= friction * tx;
-    first.vy -= friction * ty;
-    second.vx += friction * tx;
-    second.vy += friction * ty;
-  };
-  const resetObjects = () => {
-    measureArena();
-    objects.forEach((object) => {
-      object.x = arena.width + object.radius + object.index * 28;
-      object.y = clamp(arena.height * (.5 + (object.index - 1) * .24), object.radius, arena.height - object.radius);
-      object.vx = -920 + object.index * 150;
-      object.vy = (object.index - 1) * 310;
-      draw(object);
-    });
-  };
-  const animate = (time) => {
-    const delta = Math.min((time - lastFrame) / 1000 || 0, .032);
-    lastFrame = time;
-
-    objects.forEach((object) => {
-      if (!object.dragging) {
-        object.x += object.vx * delta;
-        object.y += object.vy * delta;
-        const speed = Math.hypot(object.vx, object.vy);
-        const drag = Math.min(speed * speed * .00055, 1200) * delta;
-        if (speed > 0) {
-          object.vx -= object.vx / speed * drag;
-          object.vy -= object.vy / speed * drag;
+    context.lineWidth = 1;
+    for (let index = 0; index < points.length; index += 1) {
+      for (let next = index + 1; next < points.length; next += 1) {
+        const distance = Math.hypot(points[index].x - points[next].x, points[index].y - points[next].y);
+        if (distance < 96) {
+          const energy = (points[index].life + points[next].life) / 2;
+          context.strokeStyle = `rgba(21,21,21,${(.018 + energy * .11 * (1 - distance / 96)).toFixed(3)})`;
+          context.beginPath();
+          context.moveTo(points[index].x, points[index].y);
+          context.lineTo(points[next].x, points[next].y);
+          context.stroke();
         }
-        keepInsideArena(object);
       }
+    }
+
+    points.forEach(({ cell, x, y, life }) => {
+      const response = Math.max(0, 1 - Math.hypot(x - pointer.x * width, y - pointer.y * height) / 180);
+      const wave = pulses.reduce((value, pulse) => {
+        const edge = Math.abs(Math.hypot(x - pulse.x, y - pulse.y) - (time - pulse.time) * .19);
+        return Math.max(value, Math.max(0, 1 - edge / 42));
+      }, 0);
+      context.fillStyle = `hsla(${cell.hue}, 90%, 54%, ${(.11 + life * .52 + response * .32 + wave * .22).toFixed(2)})`;
+      context.beginPath();
+      context.arc(x, y, cell.size * (.72 + life * 1.55) + response * 3 + wave * 4, 0, Math.PI * 2);
+      context.fill();
     });
-    objects.forEach((first, index) => {
-      objects.slice(index + 1).forEach((second) => resolveCollision(first, second));
-    });
-    objects.forEach((object) => {
-      keepInsideArena(object);
-      draw(object);
-    });
-    requestAnimationFrame(animate);
+
+    if (!reducedMotion) requestAnimationFrame(draw);
   };
 
-  objects.forEach((object) => {
-    const moveDraggedObject = (event) => {
-      if (!object.dragging || event.pointerId !== object.pointerId) return;
-
-      const now = performance.now();
-      const x = clamp(event.clientX - arena.left - object.grabX, object.radius, arena.width - object.radius);
-      const y = clamp(event.clientY - arena.top - object.grabY, object.radius, arena.height - object.radius);
-      const elapsed = Math.max((now - object.lastTime) / 1000, .001);
-
-      object.vx = (x - object.lastX) / elapsed;
-      object.vy = (y - object.lastY) / elapsed;
-      object.x = x;
-      object.y = y;
-      object.lastX = x;
-      object.lastY = y;
-      object.lastTime = now;
-    };
-    const releaseObject = (event) => {
-      if (event.pointerId !== object.pointerId) return;
-      object.dragging = false;
-      object.pointerId = null;
-      object.element.classList.remove("is-dragging");
-      object.element.releasePointerCapture(event.pointerId);
-    };
-
-    object.element.addEventListener("pointerdown", (event) => {
-      if (event.button !== 0) return;
-      event.preventDefault();
-      object.dragging = true;
-      object.pointerId = event.pointerId;
-      object.grabX = event.clientX - arena.left - object.x;
-      object.grabY = event.clientY - arena.top - object.y;
-      object.lastX = object.x;
-      object.lastY = object.y;
-      object.lastTime = performance.now();
-      object.element.classList.add("is-dragging");
-      object.element.setPointerCapture(event.pointerId);
-    });
-    object.element.addEventListener("pointermove", moveDraggedObject);
-    object.element.addEventListener("pointerup", releaseObject);
-    object.element.addEventListener("pointercancel", releaseObject);
+  hero.addEventListener("pointermove", (event) => {
+    const bounds = hero.getBoundingClientRect();
+    pointer.x = (event.clientX - bounds.left) / bounds.width;
+    pointer.y = (event.clientY - bounds.top) / bounds.height;
+    if (event.timeStamp - pointer.lastPulse > 900) {
+      pulses.push({ x: event.clientX - bounds.left, y: event.clientY - bounds.top, time: event.timeStamp });
+      pointer.lastPulse = event.timeStamp;
+    }
   });
-
-  requestAnimationFrame(() => {
-    resetObjects();
-    requestAnimationFrame(animate);
-  });
-  window.addEventListener("resize", () => {
-    measureArena();
-    objects.forEach((object) => {
-      object.x = clamp(object.x, object.radius, arena.width - object.radius);
-      object.y = clamp(object.y, object.radius, arena.height - object.radius);
-    });
-  });
+  hero.addEventListener("pointerleave", () => { pointer.x = -.5; pointer.y = -.5; });
+  window.addEventListener("resize", resize);
+  resize();
+  requestAnimationFrame(draw);
 }
